@@ -14,14 +14,10 @@ public class TwitterAPI {
 
 	public TwitterAPI(GUI_API gui) {
 		this.gui = gui;
-
+		start();
 	}
 
-	/*
-	 * private List<Status> getTimeline(){ }
-	 */
-
-	public static void main(String[] args) {
+	private void start() {
 
 		// http:twitter4j.org
 		// http:twitter4j.org/en/code-examples.html
@@ -39,9 +35,11 @@ public class TwitterAPI {
 			System.out.println("------------------------\n Showing home timeline \n------------------------");
 			int counter = 0;
 			int counterTotal = 0;
-			for (Status status : statuses) { // Filters only tweets from user"ISCTE - IUL"
+			for (Status status : statuses) { // Filters only tweets from
+												// user"ISCTE - IUL"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("ISCTE - IUL")) {
-					System.out.println(status.getUser().getName() + ":" + status.getText());
+					//System.out.println(status.getUser().getName() + ":" + status.getText());
+					gui.getModelListTwitter().addElement(status.getUser().getName() + ":" + status.getText());
 					counter++;
 				}
 				counterTotal++;

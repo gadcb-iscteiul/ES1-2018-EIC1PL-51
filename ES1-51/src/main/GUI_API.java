@@ -5,12 +5,16 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -18,13 +22,15 @@ import java.awt.Color;
 public class GUI_API {
 
 	private JFrame frame;
-	private JList list_facebook;
-	private JList list_mail;
-	private JList list_twitter;
 	private JButton button_mail;
 	private JButton button_twitter;
 	private JButton button_facebook;
-
+	private JList list_facebook;
+	private DefaultListModel<String> modelListFacebook;
+	private JList list_twitter;
+	private DefaultListModel<String> modelListTwitter;
+	private JList list_mail;
+	private DefaultListModel<String> modelListMail;
 
 	public GUI_API() {
 		initialize();
@@ -107,11 +113,35 @@ public class GUI_API {
 		gbc_label_mail.gridy = 0;
 		panel_label.add(label_mail, gbc_label_mail);
 		
+		//JScrollPane scrollListFacebook = new JScrollPane(list_facebook);
+		//JScrollPane scrollListTwitter = new JScrollPane(list_twitter);
+		//JScrollPane scrollListMail = new JScrollPane(list_mail);
+	
 		/*
-		 * Painel centro.
-		 * 
-		 * ****FALTA OS MODELS****
+		 * Painel Centro com GridLayout.
 		 */
+
+		JPanel panel_center = new JPanel();
+		frame.getContentPane().add(panel_center, BorderLayout.CENTER);
+		
+		modelListFacebook = new DefaultListModel<>();
+		panel_center.setLayout(new GridLayout(0, 3, 0, 0));
+		list_facebook = new JList(modelListFacebook);
+		//JScrollPane scrollListFacebook = new JScrollPane(list_facebook);
+		panel_center.add(list_facebook);
+		
+		modelListTwitter = new DefaultListModel<>();
+		list_twitter = new JList(modelListTwitter);
+		//JScrollPane scrollListTwitter = new JScrollPane(list_twitter);
+		panel_center.add(list_twitter);
+		
+		modelListMail = new DefaultListModel<>();
+		list_mail = new JList(modelListMail);
+		//JScrollPane scrollListMail = new JScrollPane(list_mail);
+		panel_center.add(list_mail);
+		
+		/*
+		 * Painel Centro com GridBagLayout.
 		JPanel panel_center = new JPanel();
 		frame.getContentPane().add(panel_center, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_center = new GridBagLayout();
@@ -121,7 +151,9 @@ public class GUI_API {
 		gbl_panel_center.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_center.setLayout(gbl_panel_center);
 		
-		list_facebook = new JList();
+		modelListFacebook = new DefaultListModel<>();
+		list_facebook = new JList(modelListFacebook);
+		//JScrollPane scrollListFacebook = new JScrollPane(list_facebook);
 		GridBagConstraints gbc_list_facebook = new GridBagConstraints();
 		gbc_list_facebook.fill = GridBagConstraints.BOTH;
 		gbc_list_facebook.insets = new Insets(0, 0, 0, 5);
@@ -129,7 +161,9 @@ public class GUI_API {
 		gbc_list_facebook.gridy = 0;
 		panel_center.add(list_facebook, gbc_list_facebook);
 		
-		list_twitter = new JList();
+		modelListTwitter = new DefaultListModel<>();
+		list_twitter = new JList(modelListTwitter);
+		//JScrollPane scrollListTwitter = new JScrollPane(list_twitter);
 		GridBagConstraints gbc_list_twitter = new GridBagConstraints();
 		gbc_list_twitter.fill = GridBagConstraints.BOTH;
 		gbc_list_twitter.insets = new Insets(0, 0, 0, 5);
@@ -137,12 +171,16 @@ public class GUI_API {
 		gbc_list_twitter.gridy = 0;
 		panel_center.add(list_twitter, gbc_list_twitter);
 		
-		list_mail = new JList();
+		modelListMail = new DefaultListModel<>();
+		list_mail = new JList(modelListMail);
+		//JScrollPane scrollListMail = new JScrollPane(list_mail);
 		GridBagConstraints gbc_list_mail = new GridBagConstraints();
 		gbc_list_mail.fill = GridBagConstraints.BOTH;
 		gbc_list_mail.gridx = 2;
 		gbc_list_mail.gridy = 0;
 		panel_center.add(list_mail, gbc_list_mail);
+		 */
+
 		
 		/*
 		 * Painel de botoes.
@@ -180,14 +218,14 @@ public class GUI_API {
 		panel_buttons.add(button_mail, gbc_button_mail);
 	}
 	
-	public JList getList_facebook() {
-		return list_facebook;
+	public DefaultListModel<String> getModelListFacebook() {
+		return modelListFacebook;
 	}
-	public JList getList_mail() {
-		return list_mail;
+	public DefaultListModel<String> getModelListTwitter() {
+		return modelListTwitter;
 	}
-	public JList getList_twitter() {
-		return list_twitter;
+	public DefaultListModel<String> getModelListMail() {
+		return modelListMail;
 	}
 	public JButton getButton_mail() {
 		return button_mail;

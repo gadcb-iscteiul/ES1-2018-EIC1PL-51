@@ -17,12 +17,14 @@ public class FacebookAPI {
 
 	public FacebookAPI(GUI_API gui) {
 		this.gui = gui;
-
+		start();
 
 	}
 
-	public static void main(String[] args) {
-		String accessToken = "EAACr9OmMWZBQBABI0IyKw2ZASAtAGvEXoj4yy5i2Fqcr1EQLaDOjHsmlRiWWzENAFfKEO2j2ZBnGIOPdr5mJNxocSw8Mf3q0oa7bJy8AujuzNZC3ZC4wb2kFZBDC0MxZBbhyXXrkkkI6Tqw2CZCrrmAZCpP4L5KKcilPKffLLAQSuwZCfQIRErivzG2NRubK2fjIMZD";
+	private void start() {
+		//https://developers.facebook.com/tools/explorer/
+		String accessToken = "EAACr9OmMWZBQBABA7FOL1wHVoz8mhZAbWjMGJ4YSoIzvpXDf5rjwHoRNBZB48r6R5OF5kDzIILhZCBiWbZBkzTkrJDqFDRNVusAHjx9bQAI92t0XnOXEPxHxfSwOqRaxHZAZAdIZCQhKPcdZCJ1kOlnfDww3LuOOWfOQ38smdmROSUntdlwnPOmoFh4ZCgx0dGGAgZD";
+		
 		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
 		User me2 = fbClient.fetchObject("me", User.class);
 
@@ -43,11 +45,15 @@ public class FacebookAPI {
 		for (List<Post> page : result) {
 			for (Post aPost : page) {
 				// Filters only posts that contain the word "Inform"
-				if (aPost.getMessage() != null && counterTotal < 2) {// aPost.getMessage().contains("Evento")
-					System.out.println("---- Post " + counter5 + " ----");
-					System.out.println("Id: " + "fb.com/" + aPost.getId());
-					System.out.println("Message: " + aPost.getMessage());
-					System.out.println("Created: " + aPost.getCreatedTime());
+				if (aPost.getMessage() != null && counterTotal < 10) {// aPost.getMessage().contains("Evento")
+					//System.out.println("---- Post " + counter5 + " ----");
+					//System.out.println("Id: " + "fb.com/" + aPost.getId());
+					//System.out.println("Message: " + aPost.getMessage());
+					//System.out.println("Created: " + aPost.getCreatedTime());
+					gui.getModelListFacebook().addElement("---- Post " + counter5 + " ----");
+					gui.getModelListFacebook().addElement("Id: " + "fb.com/" + aPost.getId());
+					gui.getModelListFacebook().addElement("Message: " + aPost.getMessage());
+					gui.getModelListFacebook().addElement("Created: " + aPost.getCreatedTime());
 					counter5++;
 				}
 				counterTotal++;
