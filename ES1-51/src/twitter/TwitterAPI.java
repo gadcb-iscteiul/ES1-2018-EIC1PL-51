@@ -18,11 +18,9 @@ public class TwitterAPI {
 	}
 
 	private void start() {
-
 		// http:twitter4j.org
 		// http:twitter4j.org/en/code-examples.html
 		// https:www.youtube.com/watch?v=uYPmkzMpnxw
-
 		try {
 			ConfigurationBuilder cb = new ConfigurationBuilder();
 			cb.setDebugEnabled(true).setOAuthConsumerKey("2ZfhDo6MbZYklQU2sLR00L24D")
@@ -38,7 +36,6 @@ public class TwitterAPI {
 			for (Status status : statuses) { // Filters only tweets from
 												// user"ISCTE - IUL"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("ISCTE - IUL")) {
-					//System.out.println(status.getUser().getName() + ":" + status.getText());
 					gui.getModelListTwitter().addElement(status.getUser().getName() + ":" + status.getText());
 					counter++;
 				}

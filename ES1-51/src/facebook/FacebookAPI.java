@@ -25,6 +25,7 @@ public class FacebookAPI {
 		//https://developers.facebook.com/tools/explorer/
 		String accessToken = "EAACr9OmMWZBQBABA7FOL1wHVoz8mhZAbWjMGJ4YSoIzvpXDf5rjwHoRNBZB48r6R5OF5kDzIILhZCBiWbZBkzTkrJDqFDRNVusAHjx9bQAI92t0XnOXEPxHxfSwOqRaxHZAZAdIZCQhKPcdZCJ1kOlnfDww3LuOOWfOQ38smdmROSUntdlwnPOmoFh4ZCgx0dGGAgZD";
 		
+		@SuppressWarnings("deprecation")
 		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
 		User me2 = fbClient.fetchObject("me", User.class);
 
@@ -39,27 +40,22 @@ public class FacebookAPI {
 
 		Connection<Post> result = fbClient.fetchConnection("me/feed", Post.class);
 
-		System.out.println("\nPosts:");
-		int counter5 = 0;
+		int counter = 0;
 		int counterTotal = 0;
 		for (List<Post> page : result) {
 			for (Post aPost : page) {
 				// Filters only posts that contain the word "Inform"
-				if (aPost.getMessage() != null && counterTotal < 10) {// aPost.getMessage().contains("Evento")
-					//System.out.println("---- Post " + counter5 + " ----");
-					//System.out.println("Id: " + "fb.com/" + aPost.getId());
-					//System.out.println("Message: " + aPost.getMessage());
-					//System.out.println("Created: " + aPost.getCreatedTime());
-					gui.getModelListFacebook().addElement("---- Post " + counter5 + " ----");
+				if (aPost.getMessage() != null && counterTotal < 5) {// aPost.getMessage().contains("Evento")
+					//Alterar para enviar Post to gui
+					gui.getModelListFacebook().addElement("---- Post " + counter + " ----");
 					gui.getModelListFacebook().addElement("Id: " + "fb.com/" + aPost.getId());
 					gui.getModelListFacebook().addElement("Message: " + aPost.getMessage());
 					gui.getModelListFacebook().addElement("Created: " + aPost.getCreatedTime());
-					counter5++;
+					counter++;
 				}
 				counterTotal++;
 			}
 		}
-		System.out.println("-------------\nNº of Results: " + counter5 + "/" + counterTotal);
+		System.out.println("-------------\nNº of Results: " + counter + "/" + counterTotal);
 	}
-
 }
