@@ -1,5 +1,7 @@
 package twitter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import main.GUI_API;
@@ -14,6 +16,7 @@ public class TwitterAPI {
 
 	public TwitterAPI(GUI_API gui) {
 		this.gui = gui;
+		addButtonActions();
 		start();
 	}
 
@@ -30,20 +33,34 @@ public class TwitterAPI {
 			TwitterFactory tf = new TwitterFactory(cb.build());
 			Twitter twitter = tf.getInstance();
 			List<Status> statuses = (twitter).getHomeTimeline();
-			System.out.println("------------------------\n Showing home timeline \n------------------------");
 			int counter = 0;
 			int counterTotal = 0;
 			for (Status status : statuses) { // Filters only tweets from
 												// user"ISCTE - IUL"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("ISCTE - IUL")) {
-					gui.getModelListTwitter().addElement(status.getUser().getName() + ":" + status.getText());
+					gui.getModelListTwitter().addElement(/*status.getUser().getName() + ":" +*/ status.getText());
 					counter++;
 				}
 				counterTotal++;
 			}
-			System.out.println("-------------\nNº of Results: " + counter + "/" + counterTotal);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	private void addButtonActions() {
+		gui.getButton_twitter().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				reTweet();
+			}
+
+			private void reTweet() {
+				String tweet = (String)gui.getList_twitter().getSelectedValue();// para obter o Tweet selecionado.
+			}
+			
+		});
+
 	}
 }
