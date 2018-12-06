@@ -1,4 +1,4 @@
-package facebook;
+package BDA.facebook;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import com.restfb.FacebookClient.AccessToken;
 import com.restfb.types.Post;
 import com.restfb.types.User;
 
-import main.GUI_API;
+import BDA.main.GUI_API;
 
 public class FacebookAPI {
 

@@ -1,9 +1,11 @@
-package mail;
+package BDA.mail;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import main.GUI_API;
+import javax.mail.*;
+
+import BDA.main.GUI_API;
 
 public class MailAPI {
 

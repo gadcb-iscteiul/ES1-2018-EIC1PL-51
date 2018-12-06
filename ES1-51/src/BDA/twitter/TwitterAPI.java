@@ -1,11 +1,11 @@
-package twitter;
+package BDA.twitter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.GUI_API;
+import BDA.main.GUI_API;
 import twitter4j.Status;
 import twitter4j.TwitterFactory;
 import twitter4j.Twitter;

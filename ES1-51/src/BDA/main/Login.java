@@ -1,4 +1,4 @@
-package main;
+package BDA.main;
 
 import java.awt.BorderLayout;
 
