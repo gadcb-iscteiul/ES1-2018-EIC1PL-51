@@ -11,13 +11,13 @@ import BDA.main.GUI_API;
 public class MailAPI {
 
 	private GUI_API gui;
-	final String senderEmailID = "rishabhraj210@gmail.com";
-	final String senderPassword = "7277077256";
-	final String emailSMTPserver = "smtp.gmail.com";
-	final String emailServerPort = "465";
-	final String receiverEmailID = "rishabhraj210@gmail.com";
-	static String emailSubject = "Test Mail";
-	static String emailBody = ":)";
+	private String senderEmailID = "rishabhraj210@gmail.com";
+	private String senderPassword = "7277077256";
+	private String emailSMTPserver = "smtp.gmail.com";
+	private String emailServerPort = "465";
+	private String receiverEmailID = "rishabhraj210@gmail.com";
+	private static String emailSubject = "Test Mail";
+	private static String emailBody = ":)";
 
 	public MailAPI(GUI_API gui) {
 		this.gui = gui;
