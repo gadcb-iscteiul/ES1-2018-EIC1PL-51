@@ -15,9 +15,11 @@ public class MailAPI {
 		start();
 	}
 
-	private void start() {		
+	private void start() {//JavaXMailLibery
 	}
-	
+
+
+
 	private void addButtonActions() {
 		gui.getButton_mail().addActionListener(new ActionListener() {
 
@@ -27,9 +29,9 @@ public class MailAPI {
 			}
 
 			private void send() {
-				String mail = (String)gui.getList_mail().getSelectedValue();// para obter o Mail selecionado.
+				//String mail = (String) gui.getList_mail().getSelectedValue();// para obter o Mail selecionado.
 			}
-			
+
 		});
 
 	}

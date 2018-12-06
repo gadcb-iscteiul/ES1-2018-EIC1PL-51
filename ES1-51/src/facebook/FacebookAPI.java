@@ -26,7 +26,7 @@ public class FacebookAPI {
 
 	private void start() {
 		//https://developers.facebook.com/tools/explorer/
-		String accessToken = "EAACr9OmMWZBQBAP2dZAS7URRZBPi7M1hJguVxrjcO4GTdsq1pu3CPBK0gHY9AZCGzZAlIu5Jgj10RmDY9Shp0PMANf6m9HmsQFFOTaBDblBrywyZAlvCwb5Xi2ZBf9xse3UU5rLYLQAbSukZBwC1JYevgyNNGZBwCjvw442ZAjUfpWGB8b8Nk9UInkoheMeJoTvZB7qSIlePLKpEAZDZD";
+		String accessToken = "EAACr9OmMWZBQBABXcZCbIZC1ZAq0uvHJLNtUnbh1DMy04KCvEfXOLKox22fF00ZAs5VCy7b2iD10FR6IoaqtyXA7fu9XMhxyf2DBQQ104H6UarVoPf7AhqzcdUuSYdm2gDZCbp6E3a9SNkEsr2V3YyW2pJ3RufdtRtMx7viSHSQS16MBPv64WxgqKCgf6bGoz6qc5arEbk5wZDZD";
 		
 		@SuppressWarnings("deprecation")
 		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
@@ -59,7 +59,7 @@ public class FacebookAPI {
 				counterTotal++;
 			}
 		}
-		System.out.println("-------------\nNº of Results: " + counter + "/" + counterTotal);
+		System.out.println("-------------\nNï¿½ of Results: " + counter + "/" + counterTotal);
 	}
 	
 	private void addButtonActions() {
@@ -71,7 +71,7 @@ public class FacebookAPI {
 			}
 
 			private void post() {
-				String post = (String)gui.getList_facebook().getSelectedValue();// para obter o Post selecionado.
+				//String post = (String)gui.getList_facebook().getSelectedValue();// para obter o Post selecionado.
 			}
 			
 		});

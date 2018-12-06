@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/Hellblazer/.m2/repository/org/twitter4j/twitter4j-core/4.0.7/twitter4j-core-4.0.7.jar" sourcepath="C:/Users/Hellblazer/.m2/repository/org/twitter4j/twitter4j-core/4.0.7/twitter4j-core-4.0.7-sources.jar">
+	<classpathentry kind="src" output="target/classes" path="src">
 		<attributes>
+			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="org.twitter4j"/>
-			<attribute name="maven.artifactId" value="twitter4j-core"/>
-			<attribute name="maven.version" value="4.0.7"/>
-			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Hellblazer/.m2/repository/com/restfb/restfb/2.10.0/restfb-2.10.0.jar" sourcepath="C:/Users/Hellblazer/.m2/repository/com/restfb/restfb/2.10.0/restfb-2.10.0-sources.jar">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="com.restfb"/>
-			<attribute name="maven.artifactId" value="restfb"/>
-			<attribute name="maven.version" value="2.10.0"/>
-			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

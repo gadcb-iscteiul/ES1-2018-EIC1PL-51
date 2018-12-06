@@ -2,6 +2,7 @@ package twitter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import main.GUI_API;
@@ -33,13 +34,16 @@ public class TwitterAPI {
 			TwitterFactory tf = new TwitterFactory(cb.build());
 			Twitter twitter = tf.getInstance();
 			List<Status> statuses = (twitter).getHomeTimeline();
-			int counter = 0;
+			int counter = 1;
 			int counterTotal = 0;
+			ArrayList<String> tweetID = new ArrayList<>();
 			for (Status status : statuses) { // Filters only tweets from
 												// user"ISCTE - IUL"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("ISCTE - IUL")) {
-					gui.getModelListTwitter().addElement(/*status.getUser().getName() + ":" +*/ status.getText());
+					gui.getModelListTwitter().addElement(counter+" : "+status.getText());
+					tweetID.add(counter+":"+status.getId());
 					counter++;
+					status.getId();
 				}
 				counterTotal++;
 			}
@@ -58,6 +62,8 @@ public class TwitterAPI {
 
 			private void reTweet() {
 				String tweet = (String)gui.getList_twitter().getSelectedValue();// para obter o Tweet selecionado.
+				//String[] aux = tweet.split(":");
+				System.out.println(tweet);
 			}
 			
 		});
