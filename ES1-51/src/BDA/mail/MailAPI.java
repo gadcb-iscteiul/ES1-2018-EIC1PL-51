@@ -94,7 +94,6 @@ public class MailAPI {
 }
 
 /*
- *	codigo a implementar..
  * import javax.mail.*; 
  * import javax.mail.internet.*; 
  * import java.util.*;
