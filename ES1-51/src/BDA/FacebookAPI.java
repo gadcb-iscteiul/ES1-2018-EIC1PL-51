@@ -48,7 +48,7 @@ public class FacebookAPI {
 	 */
 	private void start() {
 		// https://developers.facebook.com/tools/explorer/
-		String accessToken = "EAACr9OmMWZBQBAFkel8GMpLFVkWR4ZCLl5epKIaosbS7fWaVxa2MzZAb0RxPihPfxnEmMyWihJZAXo5QAVFdkHUKiBbtV0rJ8lN0ICsQFYVyRb8XDyfqbZCOCYmn7tYUWpVhZB0sP0oeUinuIKJUZC4MxixXhfWtMx3cwtheyB1ySPS4QLZAZApm3Cekxbm4Vs7UejsrxoUSe8wZDZD";
+		String accessToken = "EAACr9OmMWZBQBAMumXXFyjjuD3NBx6mgQdisvkcZASdI9j99qOCnJ2mLCTVyUyuz4FsLGa2NvynIky0DUZCyIg09GSugGxiXtSXiUmipqzD5cXxGaDomuCypLMJSKAFSH4HLk1UwDjsm2bZCNo8iuazPanj8IIB1CqOFOzl05G272lmGRcToRZCzuVVYNXsIZBpbEM7IBjOgZDZD";
 
 		@SuppressWarnings("deprecation")
 		FacebookClient fbClient = new DefaultFacebookClient(accessToken, Version.VERSION_2_11);
@@ -73,7 +73,6 @@ public class FacebookAPI {
 				// Filters only posts that contain the word "Inform"
 				if (aPost.getMessage() != null && counterTotal < 5) {// aPost.getMessage().contains("ISCTE")
 					gui.getModelListFacebook().addElement("Post: " + counter);
-					gui.getModelListFacebook().addElement("Id: " + "fb.com/" + aPost.getId());
 					gui.getModelListFacebook().addElement("Message: " + aPost.getMessage());
 					gui.getModelListFacebook().addElement("Created: " + aPost.getCreatedTime());
 					gui.getModelListFacebook().addElement(" ");
