@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import BDA.GUI_API;
+import BDA.TwitterAPI;
+
 import org.junit.*;
 import twitter4j.Status;
 import twitter4j.TwitterFactory;
@@ -14,8 +17,10 @@ public class TwitterTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
-		//assert testar valor
+		GUI_API gui = new GUI_API();
+		TwitterAPI instance = new TwitterAPI(gui);
+		
+		assertNotNull(instance);
 	}
 
 }

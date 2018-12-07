@@ -4,14 +4,19 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import BDA.GUI_API;
+import BDA.MailAPI;
+
 import javax.mail.*;
 
 public class MailTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
-		//assert testar valor
+		GUI_API gui = new GUI_API();
+		MailAPI instance = new MailAPI(gui);
+		
+		assertNotNull(instance);
 	}
 
 }
