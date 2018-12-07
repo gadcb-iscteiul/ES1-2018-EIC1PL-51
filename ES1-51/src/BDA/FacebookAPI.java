@@ -8,7 +8,9 @@ import java.util.List;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.FacebookClient.AccessToken;
+import com.restfb.Parameter;
 import com.restfb.Version;
+import com.restfb.types.FacebookType;
 import com.restfb.types.Post;
 import com.restfb.types.User;
 import com.restfb.Connection;
@@ -105,9 +107,11 @@ public class FacebookAPI {
 			private void post() {
 				String postText = (String) gui.getList_facebook().getSelectedValue();
 				Post post = searchPost(postText);
-				if (!post.equals(null))
+				
+				if (!post.equals(null)) {
 					System.out.println(post.getMessage());
-				else
+					System.out.println(post.getCreatedTime());
+				} else
 					System.out.println("Fail!");
 			}
 
@@ -119,22 +123,22 @@ public class FacebookAPI {
 					for (String aux : postIDList) {
 						String[] pos = aux.split("::");
 						if (pos[0].equals(postText)) {
-							System.out.println(pos[0] + "---" + postText);
 							postID = pos[1];
 							break;
 						}
 					}
 				}
-				System.out.println("here5");
+
+				String msg;
+				String date;
 				for (Post post : posts) {
-					if (post.getMessage() != null && (post.getId().equals(postID) || post.getMessage().equals(postText)
-							|| post.getCreatedTime().equals(postText))) {
-						System.out.println("here4");
-						// aPost = post;
+					msg = "Message: " + post.getMessage();
+					date = "Created: " + post.getCreatedTime();
+					if (post.getMessage() != null
+							&& (post.getId().equals(postID) || msg.equals(postText) || date.equals(postText))) {
+						aPost = post;
 					}
 				}
-
-				System.out.println("here3");
 				return aPost;
 			}
 
