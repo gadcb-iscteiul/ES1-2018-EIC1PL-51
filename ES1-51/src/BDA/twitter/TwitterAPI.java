@@ -2,19 +2,22 @@ package BDA.twitter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import BDA.main.GUI_API;
 import twitter4j.Status;
 import twitter4j.TwitterFactory;
 import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterAPI {
 
 	private GUI_API gui;
-
+	private Twitter twitter;
+	private TwitterFactory tf;
+	List<Status> statuses;
+	
 	public TwitterAPI(GUI_API gui) {
 		this.gui = gui;
 		addButtonActions();
@@ -31,19 +34,16 @@ public class TwitterAPI {
 					.setOAuthConsumerSecret("HxxrlXXHDETUu9Jk2KAPMnz1a7ECG0xBPo79q8ZVRAUfAsLyB9")
 					.setOAuthAccessToken("1055080625911353344-Cb7UmqQNkGMzfvu3BOT33Oab5Cg3Rp")
 					.setOAuthAccessTokenSecret("tkpXiPrUTD2aYPnJgIS0qcBKtMoYMNuxmbhL4vp6Zrw9X");
-			TwitterFactory tf = new TwitterFactory(cb.build());
-			Twitter twitter = tf.getInstance();
-			List<Status> statuses = (twitter).getHomeTimeline();
-			int counter = 1;
+			this.tf = new TwitterFactory(cb.build());
+			this.twitter = tf.getInstance();
+			this.statuses = (twitter).getHomeTimeline();
+			int counter = 0;
 			int counterTotal = 0;
-			ArrayList<String> tweetID = new ArrayList<>();
 			for (Status status : statuses) { // Filters only tweets from
 												// user"ISCTE - IUL"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("ISCTE - IUL")) {
-					gui.getModelListTwitter().addElement(counter+" : "+status.getText());
-					tweetID.add(counter+":"+status.getId());
+					gui.getModelListTwitter().addElement(/*status.getUser().getName() + ":" +*/ status.getText());
 					counter++;
-					status.getId();
 				}
 				counterTotal++;
 			}
@@ -57,14 +57,24 @@ public class TwitterAPI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				reTweet();
+				try {
+					reTweet();
+				} catch (TwitterException e1) {
+					e1.printStackTrace();
+				}
 			}
 
-			private void reTweet() {
-				String tweet = (String)gui.getList_twitter().getSelectedValue();// para obter o Tweet selecionado.
-				//String[] aux = tweet.split(":");
-				System.out.println(tweet);
+			private void reTweet() throws TwitterException {
+				for(Status status : statuses){
+					String child = 	gui.getList_twitter().getSelectedValue().toString();
+						if(status.toString().contains(child)){
+							twitter.retweetStatus(status.getId());
+						}
+					
+					
+				}
 			}
+			
 			
 		});
 
