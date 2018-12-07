@@ -11,6 +11,9 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.conf.ConfigurationBuilder;
 
+/**
+ * @author ES1-2018-51
+ */
 public class TwitterAPI {
 
 	private GUI_API gui;
@@ -24,6 +27,10 @@ public class TwitterAPI {
 		start();
 	}
 
+	/**
+	 * Metodo de inicialização do TwitterAPI, este metodo le os tweets da Pagina do ISCTE-IUL (@ISCTEIUL),
+	 * e imprime na interface grafica da BomDiaAcademia.
+	 */
 	private void start() {
 		// http:twitter4j.org
 		// http:twitter4j.org/en/code-examples.html
@@ -52,6 +59,9 @@ public class TwitterAPI {
 		}
 	}
 	
+	/**
+	 * Metodo para adicionar ActionListener no botão
+	 */
 	private void addButtonActions() {
 		gui.getButton_twitter().addActionListener(new ActionListener() {
 
@@ -64,6 +74,9 @@ public class TwitterAPI {
 				}
 			}
 
+			/**
+			 * Metodo para fazer um retweet na pagina do facebook, da publicação selecionada na interface BDA. 
+			 */
 			private void reTweet() throws TwitterException {
 				for(Status status : statuses){
 					String child = 	gui.getList_twitter().getSelectedValue().toString();

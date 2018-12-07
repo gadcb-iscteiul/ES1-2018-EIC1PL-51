@@ -8,6 +8,9 @@ import javax.mail.internet.*;
 import java.util.*;
 import BDA.main.GUI_API;
 
+/**
+ * @author ES1-2018-51
+ */
 public class MailAPI {
 
 	private GUI_API gui;
@@ -18,7 +21,11 @@ public class MailAPI {
 	private String receiverEmailID = "rishabhraj210@gmail.com";
 	private static String emailSubject = "Test Mail";
 	private static String emailBody = ":)";
-
+	
+	/**
+	 * 
+	 * @param gui Interface Gráfica da API
+	 */
 	public MailAPI(GUI_API gui) {
 		this.gui = gui;
 		addButtonActions();
@@ -30,11 +37,14 @@ public class MailAPI {
 		//2 Ler email
 		//3 imprimir para interface grafica.
 	}
-
+	
 	private void SendEmail(String receiverEmailID, String Subject, String Body) {
 		// Receiver Email Address
 	}
 
+	/**
+	 * Metodo para adicionar ActionListener no botão
+	 */
 	private void addButtonActions() {
 		gui.getButton_mail().addActionListener(new ActionListener() {
 

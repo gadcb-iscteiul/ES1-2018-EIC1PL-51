@@ -27,6 +27,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
+/**
+ * @author ES1-2018-51
+ */
 public class GUI_API {
 
 	private JFrame frame;

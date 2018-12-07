@@ -3,6 +3,9 @@ package BDA.main;
 import BDA.facebook.FacebookAPI;
 import BDA.twitter.TwitterAPI;
 
+/**
+ * @author ES1-2018-51
+ */
 public class API {
 
 	//Login login = new Login();

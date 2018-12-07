@@ -13,10 +13,22 @@ import com.restfb.types.User;
 
 import BDA.main.GUI_API;
 
+/**
+ * @author ES1-2018-51
+ */
 public class FacebookAPI {
 
+	/**
+	 * 
+	 */
 	private GUI_API gui;
 
+	/**
+	 * FacebookAPI
+	 * 
+	 * @param gui
+	 *            Graphic Interface.
+	 */
 	public FacebookAPI(GUI_API gui) {
 		this.gui = gui;
 		addButtonActions();
@@ -24,10 +36,15 @@ public class FacebookAPI {
 
 	}
 
+	/**
+	 * Metodo de inicialização do FacebookAPI, este metodo le os posts do user,
+	 * e imprime na interface grafica da BomDiaAcademia, os 5 primeiros post que
+	 * encontrar com informação sobre o ISCTE-IUL.
+	 */
 	private void start() {
-		//https://developers.facebook.com/tools/explorer/
+		// https://developers.facebook.com/tools/explorer/
 		String accessToken = "EAACr9OmMWZBQBABXcZCbIZC1ZAq0uvHJLNtUnbh1DMy04KCvEfXOLKox22fF00ZAs5VCy7b2iD10FR6IoaqtyXA7fu9XMhxyf2DBQQ104H6UarVoPf7AhqzcdUuSYdm2gDZCbp6E3a9SNkEsr2V3YyW2pJ3RufdtRtMx7viSHSQS16MBPv64WxgqKCgf6bGoz6qc5arEbk5wZDZD";
-		
+
 		@SuppressWarnings("deprecation")
 		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
 		User me2 = fbClient.fetchObject("me", User.class);
@@ -36,16 +53,16 @@ public class FacebookAPI {
 		System.out.println("Id: " + me2.getId());
 		System.out.println("Name: " + me2.getName());
 
-		//https://developers.facebook.com/apps/189068378659812/settings/basic/
+		// https://developers.facebook.com/apps/189068378659812/settings/basic/
 		AccessToken extendedAccessToken = fbClient.obtainExtendedAccessToken("189068378659812",
 				"3176c05228482d7fdcc2190d1310c083");
 		System.out.println("ExtendedAccessToken: " + extendedAccessToken.getAccessToken());
 		System.out.println("Expires: " + extendedAccessToken.getExpires());
 
 		Connection<Post> result = fbClient.fetchConnection("me/feed", Post.class);
-		
+
 		int counter = 0, counterTotal = 0;
-		
+
 		for (List<Post> page : result) {
 			for (Post aPost : page) {
 				// Filters only posts that contain the word "Inform"
@@ -61,7 +78,10 @@ public class FacebookAPI {
 		}
 		System.out.println("-------------\nN� of Results: " + counter + "/" + counterTotal);
 	}
-	
+
+	/**
+	 * Metodo para adicionar ActionListener no botão
+	 */
 	private void addButtonActions() {
 		gui.getButton_facebook().addActionListener(new ActionListener() {
 
@@ -69,11 +89,16 @@ public class FacebookAPI {
 			public void actionPerformed(ActionEvent e) {
 				post();
 			}
-
-			private void post() {
-				//String post = (String)gui.getList_facebook().getSelectedValue();// para obter o Post selecionado.
-			}
 			
+			/**
+			 * Metodo para fazer um publicação na pagina do facebook, da publicação selecionada na interface BDA. 
+			 */
+			private void post() {
+				// String post =
+				// (String)gui.getList_facebook().getSelectedValue();// para
+				// obter o Post selecionado.
+			}
+
 		});
 
 	}
