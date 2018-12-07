@@ -1,10 +1,9 @@
-package BDA.twitter;
+package BDA;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import BDA.main.GUI_API;
 import twitter4j.Status;
 import twitter4j.TwitterFactory;
 import twitter4j.Twitter;
@@ -44,15 +43,11 @@ public class TwitterAPI {
 			this.tf = new TwitterFactory(cb.build());
 			this.twitter = tf.getInstance();
 			this.statuses = (twitter).getHomeTimeline();
-			int counter = 0;
-			int counterTotal = 0;
 			for (Status status : statuses) { // Filters only tweets from
 												// user"ISCTE - IUL"
 				if (status.getUser().getName() != null && status.getUser().getName().contains("ISCTE - IUL")) {
 					gui.getModelListTwitter().addElement(/*status.getUser().getName() + ":" +*/ status.getText());
-					counter++;
 				}
-				counterTotal++;
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

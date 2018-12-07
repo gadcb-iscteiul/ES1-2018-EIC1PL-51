@@ -1,20 +1,21 @@
-package BDA.facebook;
+package BDA;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.FacebookClient.AccessToken;
+import com.restfb.Version;
 import com.restfb.types.Post;
 import com.restfb.types.User;
-
-import BDA.main.GUI_API;
+import com.restfb.Connection;
 
 /**
- * @author ES1-2018-51
+ * @author Hellblazer
+ *
  */
 public class FacebookAPI {
 
@@ -22,6 +23,8 @@ public class FacebookAPI {
 	 * 
 	 */
 	private GUI_API gui;
+	private ArrayList<String> postIDList;
+	private ArrayList<Post> posts;
 
 	/**
 	 * FacebookAPI
@@ -32,6 +35,8 @@ public class FacebookAPI {
 	public FacebookAPI(GUI_API gui) {
 		this.gui = gui;
 		addButtonActions();
+		postIDList = new ArrayList<>();
+		posts = new ArrayList<>();
 		start();
 
 	}
@@ -43,15 +48,15 @@ public class FacebookAPI {
 	 */
 	private void start() {
 		// https://developers.facebook.com/tools/explorer/
-		String accessToken = "EAACr9OmMWZBQBABXcZCbIZC1ZAq0uvHJLNtUnbh1DMy04KCvEfXOLKox22fF00ZAs5VCy7b2iD10FR6IoaqtyXA7fu9XMhxyf2DBQQ104H6UarVoPf7AhqzcdUuSYdm2gDZCbp6E3a9SNkEsr2V3YyW2pJ3RufdtRtMx7viSHSQS16MBPv64WxgqKCgf6bGoz6qc5arEbk5wZDZD";
+		String accessToken = "EAACr9OmMWZBQBAFkel8GMpLFVkWR4ZCLl5epKIaosbS7fWaVxa2MzZAb0RxPihPfxnEmMyWihJZAXo5QAVFdkHUKiBbtV0rJ8lN0ICsQFYVyRb8XDyfqbZCOCYmn7tYUWpVhZB0sP0oeUinuIKJUZC4MxixXhfWtMx3cwtheyB1ySPS4QLZAZApm3Cekxbm4Vs7UejsrxoUSe8wZDZD";
 
 		@SuppressWarnings("deprecation")
-		FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-		User me2 = fbClient.fetchObject("me", User.class);
+		FacebookClient fbClient = new DefaultFacebookClient(accessToken, Version.VERSION_2_11);
+		User user = fbClient.fetchObject("me", User.class);
 
 		System.out.println("Facebook:");
-		System.out.println("Id: " + me2.getId());
-		System.out.println("Name: " + me2.getName());
+		System.out.println("Id: " + user.getId());
+		System.out.println("Name: " + user.getName());
 
 		// https://developers.facebook.com/apps/189068378659812/settings/basic/
 		AccessToken extendedAccessToken = fbClient.obtainExtendedAccessToken("189068378659812",
@@ -67,10 +72,14 @@ public class FacebookAPI {
 			for (Post aPost : page) {
 				// Filters only posts that contain the word "Inform"
 				if (aPost.getMessage() != null && counterTotal < 5) {// aPost.getMessage().contains("ISCTE")
-					gui.getModelListFacebook().addElement("---- Post " + counter + " ----");
+					gui.getModelListFacebook().addElement("Post: " + counter);
 					gui.getModelListFacebook().addElement("Id: " + "fb.com/" + aPost.getId());
 					gui.getModelListFacebook().addElement("Message: " + aPost.getMessage());
 					gui.getModelListFacebook().addElement("Created: " + aPost.getCreatedTime());
+					gui.getModelListFacebook().addElement(" ");
+
+					posts.add(aPost);
+					postIDList.add("Post: " + counter + "::" + aPost.getId());
 					counter++;
 				}
 				counterTotal++;
@@ -89,14 +98,45 @@ public class FacebookAPI {
 			public void actionPerformed(ActionEvent e) {
 				post();
 			}
-			
+
 			/**
-			 * Metodo para fazer um publicação na pagina do facebook, da publicação selecionada na interface BDA. 
+			 * Metodo para fazer um publicação na pagina do facebook, da
+			 * publicação selecionada na interface BDA.
 			 */
 			private void post() {
-				// String post =
-				// (String)gui.getList_facebook().getSelectedValue();// para
-				// obter o Post selecionado.
+				String postText = (String) gui.getList_facebook().getSelectedValue();
+				Post post = searchPost(postText);
+				if (!post.equals(null))
+					System.out.println(post.getMessage());
+				else
+					System.out.println("Fail!");
+			}
+
+			private Post searchPost(String postText) {
+				Post aPost = null;
+				String postID = new String("");
+
+				if (postText.contains("Post: ")) {
+					for (String aux : postIDList) {
+						String[] pos = aux.split("::");
+						if (pos[0].equals(postText)) {
+							System.out.println(pos[0] + "---" + postText);
+							postID = pos[1];
+							break;
+						}
+					}
+				}
+				System.out.println("here5");
+				for (Post post : posts) {
+					if (post.getMessage() != null && (post.getId().equals(postID) || post.getMessage().equals(postText)
+							|| post.getCreatedTime().equals(postText))) {
+						System.out.println("here4");
+						// aPost = post;
+					}
+				}
+
+				System.out.println("here3");
+				return aPost;
 			}
 
 		});

@@ -1,14 +1,11 @@
-package BDA.main;
+package BDA;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;

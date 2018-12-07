@@ -1,7 +1,5 @@
-package BDA.main;
+package BDA;
 
-import BDA.facebook.FacebookAPI;
-import BDA.twitter.TwitterAPI;
 
 /**
  * @author ES1-2018-51
@@ -14,7 +12,7 @@ public class API {
 		GUI_API gui = new GUI_API();
 		//FacebookAPI fb = new FacebookAPI(gui);
 		//TwitterAPI tw = new TwitterAPI(gui);
-		// MailAPI ma = new MailAPI(gui);
+		//MailAPI ma = new MailAPI(gui);
 		
 		gui.open();
 	}

@@ -1,4 +1,4 @@
-package BDA.mail;
+package BDA;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
-import BDA.main.GUI_API;
 
 /**
  * @author ES1-2018-51
